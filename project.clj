@@ -10,7 +10,11 @@
   :source-paths ["src/clojure"]
   :java-source-paths ["src/java"]
   :dependencies [[org.clojure/clojure "1.10.0"]
-                 [com.google.protobuf/protobuf-java "3.11.0"]]
+                 [com.google.protobuf/protobuf-java "3.11.0"]
+                 [io.grpc/grpc-netty "1.26.0"]
+                 [io.netty/netty-tcnative-boringssl-static "2.0.28.Final"]
+                 [io.grpc/grpc-protobuf "1.26.0"]
+                 [io.grpc/grpc-stub "1.26.0"]]
   :profiles {:dev {:source-paths ["src/clojure" "dev"]
                    :repl-options {:init-ns user}
                    :dependencies [[hashp "0.1.0"]
