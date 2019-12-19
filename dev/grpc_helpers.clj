@@ -1,4 +1,4 @@
-(ns liftbridge.grpc
+(ns grpc-helpers
   "Wrappers around java-grpc to sort of help?"
   (:import [io.netty.handler.ssl SslContextBuilder]
            [io.grpc.netty GrpcSslContexts]
@@ -60,17 +60,15 @@
           (shutdown [_]))))))
 
 (defn netty-channel
-  [{:keys [max-conns-per-broker keep-alive-time
-           tls-config ssl-context
-           name-resolver-factory target
-           resubscribe-wait-time override-authority
-           brokers]
-    :as   opts}]
-  (let [ssl-context (build-ssl-context opts)]
-    (cond-> (NettyChannelBuilder/forTarget target)
-      brokers               (.nameResolverFactory (resolver-factory brokers))
-      name-resolver-factory (.nameResolverFactory name-resolver-factory)
-      override-authority    (.overrideAuthority override-authority)
-      ssl-context           (.sslContext ssl-context)
-      (not ssl-context)     .usePlaintext
-      :default              (.build))))
+  [& {:keys [max-conns-per-broker keep-alive-time
+             tls-config ssl-context
+             name-resolver-factory target
+             resubscribe-wait-time override-authority
+             brokers]
+      :as   opts}]
+  (cond-> (NettyChannelBuilder/forTarget target)
+    name-resolver-factory (.nameResolverFactory name-resolver-factory)
+    override-authority    (.overrideAuthority override-authority)
+    ssl-context           (.sslContext ssl-context)
+    (not ssl-context)     .usePlaintext
+    :default              (.build)))

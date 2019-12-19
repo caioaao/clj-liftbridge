@@ -1,7 +1,6 @@
 (ns liftbridge.client
   (:import [liftbridge.grpc.proto APIGrpc Api$CreateStreamRequest])
-  (:require [clojure.java.io :as io]
-            [liftbridge.grpc]))
+  (:require [clojure.java.io :as io]))
 
 (defprotocol IClient
   (create-stream [this opts])
@@ -24,14 +23,15 @@
 
 (defn connect
   "Attempts to connect to a Liftbridge server with multiple options"
-  [& {:keys [grpc-channel] :as opts}]
-  (let [channel (or grpc-channel (liftbridge.grpc/netty-channel opts))]
-    (->Client channel (APIGrpc/newBlockingStub channel))))
+  [grpc-channel]
+  (->Client grpc-channel (APIGrpc/newBlockingStub grpc-channel)))
 
 (comment
-  (def client  (connect :brokers [["localhost" 9292]]
-                        :target "liftbridge://localhost"))
-
-  (def stream-res (create-stream client "banana"))
-
+  (import '[io.grpc ManagedChannelBuilder])
+  (def client (->> (ManagedChannelBuilder/forAddress "localhost" 9292)
+                   .usePlaintext
+                   .build
+                   connect))
+  (create-stream client {:subject "one-stream"
+                         :name    "one-stream"})
   )
