@@ -1,3 +1,0 @@
-[submodule "liftbridge-api"]
-	path = liftbridge-api
-	url = git@github.com:liftbridge-io/liftbridge-api.git
