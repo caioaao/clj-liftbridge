@@ -1,4 +1,4 @@
-package liftbridge.grpc.proto;
+package liftbridge.proto;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 import static io.grpc.stub.ClientCalls.asyncBidiStreamingCall;
@@ -22,7 +22,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.26.0)",
-    comments = "Source: api.proto")
+    comments = "Source: liftbridge-api/api.proto")
 public final class APIGrpc {
 
   private APIGrpc() {}
@@ -30,29 +30,29 @@ public final class APIGrpc {
   public static final String SERVICE_NAME = "proto.API";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<liftbridge.grpc.proto.Api.CreateStreamRequest,
-      liftbridge.grpc.proto.Api.CreateStreamResponse> getCreateStreamMethod;
+  private static volatile io.grpc.MethodDescriptor<liftbridge.proto.Api.CreateStreamRequest,
+      liftbridge.proto.Api.CreateStreamResponse> getCreateStreamMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "CreateStream",
-      requestType = liftbridge.grpc.proto.Api.CreateStreamRequest.class,
-      responseType = liftbridge.grpc.proto.Api.CreateStreamResponse.class,
+      requestType = liftbridge.proto.Api.CreateStreamRequest.class,
+      responseType = liftbridge.proto.Api.CreateStreamResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<liftbridge.grpc.proto.Api.CreateStreamRequest,
-      liftbridge.grpc.proto.Api.CreateStreamResponse> getCreateStreamMethod() {
-    io.grpc.MethodDescriptor<liftbridge.grpc.proto.Api.CreateStreamRequest, liftbridge.grpc.proto.Api.CreateStreamResponse> getCreateStreamMethod;
+  public static io.grpc.MethodDescriptor<liftbridge.proto.Api.CreateStreamRequest,
+      liftbridge.proto.Api.CreateStreamResponse> getCreateStreamMethod() {
+    io.grpc.MethodDescriptor<liftbridge.proto.Api.CreateStreamRequest, liftbridge.proto.Api.CreateStreamResponse> getCreateStreamMethod;
     if ((getCreateStreamMethod = APIGrpc.getCreateStreamMethod) == null) {
       synchronized (APIGrpc.class) {
         if ((getCreateStreamMethod = APIGrpc.getCreateStreamMethod) == null) {
           APIGrpc.getCreateStreamMethod = getCreateStreamMethod =
-              io.grpc.MethodDescriptor.<liftbridge.grpc.proto.Api.CreateStreamRequest, liftbridge.grpc.proto.Api.CreateStreamResponse>newBuilder()
+              io.grpc.MethodDescriptor.<liftbridge.proto.Api.CreateStreamRequest, liftbridge.proto.Api.CreateStreamResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "CreateStream"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  liftbridge.grpc.proto.Api.CreateStreamRequest.getDefaultInstance()))
+                  liftbridge.proto.Api.CreateStreamRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  liftbridge.grpc.proto.Api.CreateStreamResponse.getDefaultInstance()))
+                  liftbridge.proto.Api.CreateStreamResponse.getDefaultInstance()))
               .setSchemaDescriptor(new APIMethodDescriptorSupplier("CreateStream"))
               .build();
         }
@@ -61,29 +61,29 @@ public final class APIGrpc {
     return getCreateStreamMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<liftbridge.grpc.proto.Api.SubscribeRequest,
-      liftbridge.grpc.proto.Api.Message> getSubscribeMethod;
+  private static volatile io.grpc.MethodDescriptor<liftbridge.proto.Api.SubscribeRequest,
+      liftbridge.proto.Api.Message> getSubscribeMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Subscribe",
-      requestType = liftbridge.grpc.proto.Api.SubscribeRequest.class,
-      responseType = liftbridge.grpc.proto.Api.Message.class,
+      requestType = liftbridge.proto.Api.SubscribeRequest.class,
+      responseType = liftbridge.proto.Api.Message.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
-  public static io.grpc.MethodDescriptor<liftbridge.grpc.proto.Api.SubscribeRequest,
-      liftbridge.grpc.proto.Api.Message> getSubscribeMethod() {
-    io.grpc.MethodDescriptor<liftbridge.grpc.proto.Api.SubscribeRequest, liftbridge.grpc.proto.Api.Message> getSubscribeMethod;
+  public static io.grpc.MethodDescriptor<liftbridge.proto.Api.SubscribeRequest,
+      liftbridge.proto.Api.Message> getSubscribeMethod() {
+    io.grpc.MethodDescriptor<liftbridge.proto.Api.SubscribeRequest, liftbridge.proto.Api.Message> getSubscribeMethod;
     if ((getSubscribeMethod = APIGrpc.getSubscribeMethod) == null) {
       synchronized (APIGrpc.class) {
         if ((getSubscribeMethod = APIGrpc.getSubscribeMethod) == null) {
           APIGrpc.getSubscribeMethod = getSubscribeMethod =
-              io.grpc.MethodDescriptor.<liftbridge.grpc.proto.Api.SubscribeRequest, liftbridge.grpc.proto.Api.Message>newBuilder()
+              io.grpc.MethodDescriptor.<liftbridge.proto.Api.SubscribeRequest, liftbridge.proto.Api.Message>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Subscribe"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  liftbridge.grpc.proto.Api.SubscribeRequest.getDefaultInstance()))
+                  liftbridge.proto.Api.SubscribeRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  liftbridge.grpc.proto.Api.Message.getDefaultInstance()))
+                  liftbridge.proto.Api.Message.getDefaultInstance()))
               .setSchemaDescriptor(new APIMethodDescriptorSupplier("Subscribe"))
               .build();
         }
@@ -92,29 +92,29 @@ public final class APIGrpc {
     return getSubscribeMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<liftbridge.grpc.proto.Api.FetchMetadataRequest,
-      liftbridge.grpc.proto.Api.FetchMetadataResponse> getFetchMetadataMethod;
+  private static volatile io.grpc.MethodDescriptor<liftbridge.proto.Api.FetchMetadataRequest,
+      liftbridge.proto.Api.FetchMetadataResponse> getFetchMetadataMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "FetchMetadata",
-      requestType = liftbridge.grpc.proto.Api.FetchMetadataRequest.class,
-      responseType = liftbridge.grpc.proto.Api.FetchMetadataResponse.class,
+      requestType = liftbridge.proto.Api.FetchMetadataRequest.class,
+      responseType = liftbridge.proto.Api.FetchMetadataResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<liftbridge.grpc.proto.Api.FetchMetadataRequest,
-      liftbridge.grpc.proto.Api.FetchMetadataResponse> getFetchMetadataMethod() {
-    io.grpc.MethodDescriptor<liftbridge.grpc.proto.Api.FetchMetadataRequest, liftbridge.grpc.proto.Api.FetchMetadataResponse> getFetchMetadataMethod;
+  public static io.grpc.MethodDescriptor<liftbridge.proto.Api.FetchMetadataRequest,
+      liftbridge.proto.Api.FetchMetadataResponse> getFetchMetadataMethod() {
+    io.grpc.MethodDescriptor<liftbridge.proto.Api.FetchMetadataRequest, liftbridge.proto.Api.FetchMetadataResponse> getFetchMetadataMethod;
     if ((getFetchMetadataMethod = APIGrpc.getFetchMetadataMethod) == null) {
       synchronized (APIGrpc.class) {
         if ((getFetchMetadataMethod = APIGrpc.getFetchMetadataMethod) == null) {
           APIGrpc.getFetchMetadataMethod = getFetchMetadataMethod =
-              io.grpc.MethodDescriptor.<liftbridge.grpc.proto.Api.FetchMetadataRequest, liftbridge.grpc.proto.Api.FetchMetadataResponse>newBuilder()
+              io.grpc.MethodDescriptor.<liftbridge.proto.Api.FetchMetadataRequest, liftbridge.proto.Api.FetchMetadataResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "FetchMetadata"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  liftbridge.grpc.proto.Api.FetchMetadataRequest.getDefaultInstance()))
+                  liftbridge.proto.Api.FetchMetadataRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  liftbridge.grpc.proto.Api.FetchMetadataResponse.getDefaultInstance()))
+                  liftbridge.proto.Api.FetchMetadataResponse.getDefaultInstance()))
               .setSchemaDescriptor(new APIMethodDescriptorSupplier("FetchMetadata"))
               .build();
         }
@@ -123,29 +123,29 @@ public final class APIGrpc {
     return getFetchMetadataMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<liftbridge.grpc.proto.Api.PublishRequest,
-      liftbridge.grpc.proto.Api.PublishResponse> getPublishMethod;
+  private static volatile io.grpc.MethodDescriptor<liftbridge.proto.Api.PublishRequest,
+      liftbridge.proto.Api.PublishResponse> getPublishMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "Publish",
-      requestType = liftbridge.grpc.proto.Api.PublishRequest.class,
-      responseType = liftbridge.grpc.proto.Api.PublishResponse.class,
+      requestType = liftbridge.proto.Api.PublishRequest.class,
+      responseType = liftbridge.proto.Api.PublishResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<liftbridge.grpc.proto.Api.PublishRequest,
-      liftbridge.grpc.proto.Api.PublishResponse> getPublishMethod() {
-    io.grpc.MethodDescriptor<liftbridge.grpc.proto.Api.PublishRequest, liftbridge.grpc.proto.Api.PublishResponse> getPublishMethod;
+  public static io.grpc.MethodDescriptor<liftbridge.proto.Api.PublishRequest,
+      liftbridge.proto.Api.PublishResponse> getPublishMethod() {
+    io.grpc.MethodDescriptor<liftbridge.proto.Api.PublishRequest, liftbridge.proto.Api.PublishResponse> getPublishMethod;
     if ((getPublishMethod = APIGrpc.getPublishMethod) == null) {
       synchronized (APIGrpc.class) {
         if ((getPublishMethod = APIGrpc.getPublishMethod) == null) {
           APIGrpc.getPublishMethod = getPublishMethod =
-              io.grpc.MethodDescriptor.<liftbridge.grpc.proto.Api.PublishRequest, liftbridge.grpc.proto.Api.PublishResponse>newBuilder()
+              io.grpc.MethodDescriptor.<liftbridge.proto.Api.PublishRequest, liftbridge.proto.Api.PublishResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Publish"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  liftbridge.grpc.proto.Api.PublishRequest.getDefaultInstance()))
+                  liftbridge.proto.Api.PublishRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  liftbridge.grpc.proto.Api.PublishResponse.getDefaultInstance()))
+                  liftbridge.proto.Api.PublishResponse.getDefaultInstance()))
               .setSchemaDescriptor(new APIMethodDescriptorSupplier("Publish"))
               .build();
         }
@@ -212,8 +212,8 @@ public final class APIGrpc {
      * already exists.
      * </pre>
      */
-    public void createStream(liftbridge.grpc.proto.Api.CreateStreamRequest request,
-        io.grpc.stub.StreamObserver<liftbridge.grpc.proto.Api.CreateStreamResponse> responseObserver) {
+    public void createStream(liftbridge.proto.Api.CreateStreamRequest request,
+        io.grpc.stub.StreamObserver<liftbridge.proto.Api.CreateStreamResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getCreateStreamMethod(), responseObserver);
     }
 
@@ -225,8 +225,8 @@ public final class APIGrpc {
      * context to close the subscription.
      * </pre>
      */
-    public void subscribe(liftbridge.grpc.proto.Api.SubscribeRequest request,
-        io.grpc.stub.StreamObserver<liftbridge.grpc.proto.Api.Message> responseObserver) {
+    public void subscribe(liftbridge.proto.Api.SubscribeRequest request,
+        io.grpc.stub.StreamObserver<liftbridge.proto.Api.Message> responseObserver) {
       asyncUnimplementedUnaryCall(getSubscribeMethod(), responseObserver);
     }
 
@@ -236,8 +236,8 @@ public final class APIGrpc {
      * broker information.
      * </pre>
      */
-    public void fetchMetadata(liftbridge.grpc.proto.Api.FetchMetadataRequest request,
-        io.grpc.stub.StreamObserver<liftbridge.grpc.proto.Api.FetchMetadataResponse> responseObserver) {
+    public void fetchMetadata(liftbridge.proto.Api.FetchMetadataRequest request,
+        io.grpc.stub.StreamObserver<liftbridge.proto.Api.FetchMetadataResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getFetchMetadataMethod(), responseObserver);
     }
 
@@ -249,8 +249,8 @@ public final class APIGrpc {
      * code is returned.
      * </pre>
      */
-    public void publish(liftbridge.grpc.proto.Api.PublishRequest request,
-        io.grpc.stub.StreamObserver<liftbridge.grpc.proto.Api.PublishResponse> responseObserver) {
+    public void publish(liftbridge.proto.Api.PublishRequest request,
+        io.grpc.stub.StreamObserver<liftbridge.proto.Api.PublishResponse> responseObserver) {
       asyncUnimplementedUnaryCall(getPublishMethod(), responseObserver);
     }
 
@@ -260,29 +260,29 @@ public final class APIGrpc {
             getCreateStreamMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                liftbridge.grpc.proto.Api.CreateStreamRequest,
-                liftbridge.grpc.proto.Api.CreateStreamResponse>(
+                liftbridge.proto.Api.CreateStreamRequest,
+                liftbridge.proto.Api.CreateStreamResponse>(
                   this, METHODID_CREATE_STREAM)))
           .addMethod(
             getSubscribeMethod(),
             asyncServerStreamingCall(
               new MethodHandlers<
-                liftbridge.grpc.proto.Api.SubscribeRequest,
-                liftbridge.grpc.proto.Api.Message>(
+                liftbridge.proto.Api.SubscribeRequest,
+                liftbridge.proto.Api.Message>(
                   this, METHODID_SUBSCRIBE)))
           .addMethod(
             getFetchMetadataMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                liftbridge.grpc.proto.Api.FetchMetadataRequest,
-                liftbridge.grpc.proto.Api.FetchMetadataResponse>(
+                liftbridge.proto.Api.FetchMetadataRequest,
+                liftbridge.proto.Api.FetchMetadataResponse>(
                   this, METHODID_FETCH_METADATA)))
           .addMethod(
             getPublishMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                liftbridge.grpc.proto.Api.PublishRequest,
-                liftbridge.grpc.proto.Api.PublishResponse>(
+                liftbridge.proto.Api.PublishRequest,
+                liftbridge.proto.Api.PublishResponse>(
                   this, METHODID_PUBLISH)))
           .build();
     }
@@ -312,8 +312,8 @@ public final class APIGrpc {
      * already exists.
      * </pre>
      */
-    public void createStream(liftbridge.grpc.proto.Api.CreateStreamRequest request,
-        io.grpc.stub.StreamObserver<liftbridge.grpc.proto.Api.CreateStreamResponse> responseObserver) {
+    public void createStream(liftbridge.proto.Api.CreateStreamRequest request,
+        io.grpc.stub.StreamObserver<liftbridge.proto.Api.CreateStreamResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getCreateStreamMethod(), getCallOptions()), request, responseObserver);
     }
@@ -326,8 +326,8 @@ public final class APIGrpc {
      * context to close the subscription.
      * </pre>
      */
-    public void subscribe(liftbridge.grpc.proto.Api.SubscribeRequest request,
-        io.grpc.stub.StreamObserver<liftbridge.grpc.proto.Api.Message> responseObserver) {
+    public void subscribe(liftbridge.proto.Api.SubscribeRequest request,
+        io.grpc.stub.StreamObserver<liftbridge.proto.Api.Message> responseObserver) {
       asyncServerStreamingCall(
           getChannel().newCall(getSubscribeMethod(), getCallOptions()), request, responseObserver);
     }
@@ -338,8 +338,8 @@ public final class APIGrpc {
      * broker information.
      * </pre>
      */
-    public void fetchMetadata(liftbridge.grpc.proto.Api.FetchMetadataRequest request,
-        io.grpc.stub.StreamObserver<liftbridge.grpc.proto.Api.FetchMetadataResponse> responseObserver) {
+    public void fetchMetadata(liftbridge.proto.Api.FetchMetadataRequest request,
+        io.grpc.stub.StreamObserver<liftbridge.proto.Api.FetchMetadataResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getFetchMetadataMethod(), getCallOptions()), request, responseObserver);
     }
@@ -352,8 +352,8 @@ public final class APIGrpc {
      * code is returned.
      * </pre>
      */
-    public void publish(liftbridge.grpc.proto.Api.PublishRequest request,
-        io.grpc.stub.StreamObserver<liftbridge.grpc.proto.Api.PublishResponse> responseObserver) {
+    public void publish(liftbridge.proto.Api.PublishRequest request,
+        io.grpc.stub.StreamObserver<liftbridge.proto.Api.PublishResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getPublishMethod(), getCallOptions()), request, responseObserver);
     }
@@ -383,7 +383,7 @@ public final class APIGrpc {
      * already exists.
      * </pre>
      */
-    public liftbridge.grpc.proto.Api.CreateStreamResponse createStream(liftbridge.grpc.proto.Api.CreateStreamRequest request) {
+    public liftbridge.proto.Api.CreateStreamResponse createStream(liftbridge.proto.Api.CreateStreamRequest request) {
       return blockingUnaryCall(
           getChannel(), getCreateStreamMethod(), getCallOptions(), request);
     }
@@ -396,8 +396,8 @@ public final class APIGrpc {
      * context to close the subscription.
      * </pre>
      */
-    public java.util.Iterator<liftbridge.grpc.proto.Api.Message> subscribe(
-        liftbridge.grpc.proto.Api.SubscribeRequest request) {
+    public java.util.Iterator<liftbridge.proto.Api.Message> subscribe(
+        liftbridge.proto.Api.SubscribeRequest request) {
       return blockingServerStreamingCall(
           getChannel(), getSubscribeMethod(), getCallOptions(), request);
     }
@@ -408,7 +408,7 @@ public final class APIGrpc {
      * broker information.
      * </pre>
      */
-    public liftbridge.grpc.proto.Api.FetchMetadataResponse fetchMetadata(liftbridge.grpc.proto.Api.FetchMetadataRequest request) {
+    public liftbridge.proto.Api.FetchMetadataResponse fetchMetadata(liftbridge.proto.Api.FetchMetadataRequest request) {
       return blockingUnaryCall(
           getChannel(), getFetchMetadataMethod(), getCallOptions(), request);
     }
@@ -421,7 +421,7 @@ public final class APIGrpc {
      * code is returned.
      * </pre>
      */
-    public liftbridge.grpc.proto.Api.PublishResponse publish(liftbridge.grpc.proto.Api.PublishRequest request) {
+    public liftbridge.proto.Api.PublishResponse publish(liftbridge.proto.Api.PublishRequest request) {
       return blockingUnaryCall(
           getChannel(), getPublishMethod(), getCallOptions(), request);
     }
@@ -451,8 +451,8 @@ public final class APIGrpc {
      * already exists.
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<liftbridge.grpc.proto.Api.CreateStreamResponse> createStream(
-        liftbridge.grpc.proto.Api.CreateStreamRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<liftbridge.proto.Api.CreateStreamResponse> createStream(
+        liftbridge.proto.Api.CreateStreamRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getCreateStreamMethod(), getCallOptions()), request);
     }
@@ -463,8 +463,8 @@ public final class APIGrpc {
      * broker information.
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<liftbridge.grpc.proto.Api.FetchMetadataResponse> fetchMetadata(
-        liftbridge.grpc.proto.Api.FetchMetadataRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<liftbridge.proto.Api.FetchMetadataResponse> fetchMetadata(
+        liftbridge.proto.Api.FetchMetadataRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getFetchMetadataMethod(), getCallOptions()), request);
     }
@@ -477,8 +477,8 @@ public final class APIGrpc {
      * code is returned.
      * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<liftbridge.grpc.proto.Api.PublishResponse> publish(
-        liftbridge.grpc.proto.Api.PublishRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<liftbridge.proto.Api.PublishResponse> publish(
+        liftbridge.proto.Api.PublishRequest request) {
       return futureUnaryCall(
           getChannel().newCall(getPublishMethod(), getCallOptions()), request);
     }
@@ -507,20 +507,20 @@ public final class APIGrpc {
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
         case METHODID_CREATE_STREAM:
-          serviceImpl.createStream((liftbridge.grpc.proto.Api.CreateStreamRequest) request,
-              (io.grpc.stub.StreamObserver<liftbridge.grpc.proto.Api.CreateStreamResponse>) responseObserver);
+          serviceImpl.createStream((liftbridge.proto.Api.CreateStreamRequest) request,
+              (io.grpc.stub.StreamObserver<liftbridge.proto.Api.CreateStreamResponse>) responseObserver);
           break;
         case METHODID_SUBSCRIBE:
-          serviceImpl.subscribe((liftbridge.grpc.proto.Api.SubscribeRequest) request,
-              (io.grpc.stub.StreamObserver<liftbridge.grpc.proto.Api.Message>) responseObserver);
+          serviceImpl.subscribe((liftbridge.proto.Api.SubscribeRequest) request,
+              (io.grpc.stub.StreamObserver<liftbridge.proto.Api.Message>) responseObserver);
           break;
         case METHODID_FETCH_METADATA:
-          serviceImpl.fetchMetadata((liftbridge.grpc.proto.Api.FetchMetadataRequest) request,
-              (io.grpc.stub.StreamObserver<liftbridge.grpc.proto.Api.FetchMetadataResponse>) responseObserver);
+          serviceImpl.fetchMetadata((liftbridge.proto.Api.FetchMetadataRequest) request,
+              (io.grpc.stub.StreamObserver<liftbridge.proto.Api.FetchMetadataResponse>) responseObserver);
           break;
         case METHODID_PUBLISH:
-          serviceImpl.publish((liftbridge.grpc.proto.Api.PublishRequest) request,
-              (io.grpc.stub.StreamObserver<liftbridge.grpc.proto.Api.PublishResponse>) responseObserver);
+          serviceImpl.publish((liftbridge.proto.Api.PublishRequest) request,
+              (io.grpc.stub.StreamObserver<liftbridge.proto.Api.PublishResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -544,7 +544,7 @@ public final class APIGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return liftbridge.grpc.proto.Api.getDescriptor();
+      return liftbridge.proto.Api.getDescriptor();
     }
 
     @java.lang.Override

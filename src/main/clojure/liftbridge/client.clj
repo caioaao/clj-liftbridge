@@ -1,5 +1,5 @@
 (ns liftbridge.client
-  (:import [liftbridge.grpc.proto APIGrpc Api$CreateStreamRequest])
+  (:import [liftbridge.proto APIGrpc Api$CreateStreamRequest])
   (:require [clojure.java.io :as io]))
 
 (defprotocol IClient
