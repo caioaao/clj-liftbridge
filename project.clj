@@ -12,6 +12,7 @@
                       "src/auto/java"]
   :resource-paths ["resources/main"]
   :dependencies [[org.clojure/clojure "1.10.0"]
+                 [org.clojure/core.async "0.6.532"]
                  [com.google.protobuf/protobuf-java "3.11.0"]
                  [io.grpc/grpc-protobuf "1.26.0"]
                  [io.grpc/grpc-stub "1.26.0"]]
