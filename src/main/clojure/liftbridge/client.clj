@@ -2,8 +2,10 @@
   (:import [liftbridge.proto APIGrpc Api$CreateStreamRequest
             Api$SubscribeRequest Api$SubscribeRequest$Builder
             Api$StartPosition Api$Message APIGrpc$APIStub
-            APIGrpc$APIBlockingStub ]
-           [io.grpc.stub StreamObserver])
+            APIGrpc$APIBlockingStub Api$PublishRequest
+            Api$Message]
+           [io.grpc.stub StreamObserver]
+           [com.google.protobuf ByteString])
   (:require [clojure.java.io :as io]
             [clojure.core.async :as async]))
 
@@ -71,10 +73,11 @@
     If an error occurs during consumption, the throwable object is published to
     the channel and the channel is closed.")
 
-  (publish [this subject message {:keys [] :as opts}]
-    "Publishes `message` to the NATS `subject`."))
+  (publish [this subject message]
+    "Publishes `message` to the NATS `subject`. This is a work in progress."))
 
 (defn- set-subscription-starting-point
+  ^Api$SubscribeRequest$Builder
   [^Api$SubscribeRequest$Builder
    subscribe-request-builder
    start-at {:keys [start-offset start-time]}]
@@ -124,7 +127,7 @@
               (throw res)
               res))))
 
-(defrecord Client [channel async-stub]
+(defrecord Client [channel ^APIGrpc$APIStub async-stub]
   IClient
   (create-stream
     [this stream-name {:keys [subject replication-factor group partitions]}]
@@ -135,9 +138,9 @@
                     :default           (-> (.setName stream-name)
                                            (.setSubject (or subject stream-name))
                                            .build))]
-      (async-call-future #(.createStream ^APIGrpc$APIStub async-stub
+      (async-call-future #(.createStream async-stub
                                          req-obj
-                                         ^StreamObserver %))))
+                                         %))))
 
   (subscribe [this stream-name {:keys [partition-number start-at
                                        start-offset start-time
@@ -145,12 +148,21 @@
                                 :as opts}]
     (let [request-obj (cond-> (Api$SubscribeRequest/newBuilder)
                         partition-number (.setPartition partition-number)
-                        start-at         ^Api$SubscribeRequest$Builder (set-subscription-starting-point start-at opts)
+                        start-at         (set-subscription-starting-point start-at opts)
                         :default         (-> (.setStream stream-name)
                                              .build))]
-      (async-call-chan #(.subscribe ^APIGrpc$APIStub async-stub
-                                    ^Api$SubscribeRequest request-obj
-                                    %)))))
+      (async-call-chan #(.subscribe async-stub
+                                    request-obj
+                                    %))))
+
+  (publish [this subject msg]
+    (let [msg            (-> (Api$Message/newBuilder)
+                             (.setSubject subject)
+                             (.setValue (ByteString/copyFrom (bytes msg))))
+          request-object (-> (Api$PublishRequest/newBuilder)
+                             (.setMessage msg)
+                             .build)]
+      (async-call-future #(.publish async-stub request-object %)))))
 
 (defn connect
   "Attempts to connect to a Liftbridge server with multiple options"
@@ -166,5 +178,7 @@
   @(create-stream client "one-stream" {})
 
 
-  (subscribe client "one-stream" {:handler-fn (fn [& args] (prn args))})
+  (def subs-chan (subscribe client "one-stream" {}))
+  @(publish client "one-stream" (.getBytes "testing"))
+  (async/<!! subs-chan)
   )
