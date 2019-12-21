@@ -38,7 +38,7 @@
     channel where messages are published. Options are:
 
      - `partition-number` Specifies the stream partition to consume. Defaults to
-    `0`
+       `0`
 
      - `start-at` Sets the start position. Can be:
 
