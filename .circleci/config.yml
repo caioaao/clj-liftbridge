@@ -1,23 +1,33 @@
 version: 2
 jobs:
-  # build-and-test:
-  #   docker:
-  #     - image: circleci/clojure:lein-2.8.1
-  #     - image: liftbridge/liftbridge-docker:latest
-  #   steps:
-  #     - checkout
-  #     - restore_cache:
-  #         key: deps-{{ checksum "project.clj" }}
-  #     - run:
-  #         command: |
-  #           lein deps
-  #     - save_cache:
-  #         key: deps-{{ checksum "project.clj" }}
-  #         paths:
-  #           - "~/.m2"
-  #     - run:
-  #         command: |
-  #           lein test
+  build-and-test:
+    docker:
+      - image: circleci/clojure:lein-2.8.1
+      - image: liftbridge/liftbridge-docker:latest
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps-{{ checksum "project.clj" }}
+      - run:
+          command: |
+            lein deps
+      - save_cache:
+          key: deps-{{ checksum "project.clj" }}
+          paths:
+            - "~/.m2"
+      - run:
+          name: Waiting for Liftbridge server to be ready
+          command: |
+            for i in `seq 1 10`;
+            do
+              nc -z localhost 9292 && echo Success && exit 0
+              echo -n .
+              sleep 1
+            done
+            echo Failed waiting for server && exit 1
+      - run:
+          command: |
+            lein test
 
   lint:
     docker:
@@ -63,17 +73,17 @@ workflows:
   version: 2
   build-test-and-deploy:
     jobs:
-      # - build-and-test:
-      #     filters:
-      #       tags:
-      #         only: /.*/
+      - build-and-test:
+          filters:
+            tags:
+              only: /.*/
       - lint:
           filters:
             tags:
               only: /.*/
       - deploy:
           requires:
-            # - test
+            # - build-and-test
             - lint
           filters:
             tags:
