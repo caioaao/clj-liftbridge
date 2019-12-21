@@ -6,7 +6,8 @@
             [state-flow.state :as state]
             [clojure.test :refer [is]]
             [clojure.core.async :as async]
-            [com.caioaao.clj-liftbridge.message :as message]))
+            [com.caioaao.clj-liftbridge.message :as message]
+            [matcher-combinators.matchers :as m]))
 
 (def server-ip "localhost")
 (def server-port 9292)
@@ -70,3 +71,34 @@
                            :value           #(-> % String. (= "hello world"))
                            :timestamp-nanos int?}
                 (async/<!! subscription-chan)))))
+
+(defflow subscription-options
+  {:init    init!
+   :cleanup cleanup!}
+  [lift-conn (state/gets (comp lift-connect :grpc-channel))
+   stream-name (state/wrap-fn (fn [] (random-stream-name)))]
+  (state/wrap-fn #(deref (clj-liftbridge.client/create-stream lift-conn stream-name {})))
+
+  (state/wrap-fn (fn [] (->> (range 10)
+                            (map #(.getBytes (str %)))
+                            (run! (partial clj-liftbridge.client/publish lift-conn stream-name)))))
+
+  [subscription-chan (state/wrap-fn #(-> {:start-at :liftbridge.start-at/earliest-received}
+                                         (->> (clj-liftbridge.client/subscribe lift-conn stream-name))
+                                         (doto async/<!!)))
+   received-msgs (state/wrap-fn (fn [] (repeatedly 10 #(async/<!! subscription-chan))))]
+  (cljtest/match? "starting subscription from beginning we get all messages"
+                  (->> received-msgs
+                       (map #(-> % ::message/value
+                                 String.
+                                 Integer/parseInt)))
+                  (m/in-any-order (range 10)))
+  (testing "all offsets are present"
+    (is (= (range 10)
+           (map ::message/offset received-msgs))))
+
+  [subscription-chan (state/wrap-fn #(-> {:start-at :liftbridge.start-at/latest-received}
+                                         (->> (clj-liftbridge.client/subscribe lift-conn stream-name))
+                                         (doto async/<!!)))]
+  (testing "starting subscription from latest received will get only the last message"
+    (is (= 9 (::message/offset (async/<!! subscription-chan))))))
