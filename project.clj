@@ -16,11 +16,21 @@
                  [com.google.protobuf/protobuf-java "3.11.0"]
                  [io.grpc/grpc-protobuf "1.26.0"]
                  [io.grpc/grpc-stub "1.26.0"]]
-  :profiles {:dev {:source-paths ["src/main/clojure" "src/dev/clojure"]
+  :profiles {:dev {:source-paths   ["src/main/clojure" "src/dev/clojure"]
                    :resource-paths ["resources/dev"]
-                   :repl-options {:init-ns user}
-                   :dependencies [[hashp "0.1.0"]
-                                  [orchestra "2018.12.06-2"]
-                                  [org.clojure/tools.namespace "0.3.1"]
-                                  [less-awful-ssl "1.0.4"]
-                                  [io.grpc/grpc-netty "1.26.0"]]}})
+                   :repl-options   {:init-ns user}
+                   :dependencies   [[hashp "0.1.0"]
+                                    [orchestra "2018.12.06-2"]
+                                    [org.clojure/tools.namespace "0.3.1"]
+                                    [less-awful-ssl "1.0.4"]
+                                    [io.grpc/grpc-netty "1.26.0"]]
+                   :plugins        [[lein-cljfmt "0.6.1"]]}}
+  :release-tasks [["deploy" "clojars"]
+                  ["change" "version"
+                   "leiningen.release/bump-version" "patch"]
+                  ["vcs" "commit"]
+                  ["vcs" "push"]]
+  :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
+                                    :sign-releases false
+                                    :username      :env/clojars_username
+                                    :password      :env/clojars_password}]])

@@ -41,20 +41,24 @@
     ssl-context ssl-context
     tls-config  (tls-config->ssl-context tls-config)))
 
+(defn- refresh-addresses [results-agent brokers]
+  (let [result (->> (shuffle brokers)
+                    (map (fn [[host port]] (InetSocketAddress. host port)))
+                    EquivalentAddressGroup.
+                    list)]
+    (send results-agent #(.onAddresses % result Attributes/EMPTY))))
+
 (defn resolver-factory [brokers]
   (proxy [NameResolver$Factory] []
     (getDefaultScheme [_] "liftbridge")
     (newNameResolver [target-uri ^NameResolver$Args _args]
-      (let [a                 (agent nil)
-            refresh-addresses (fn [] (let [result (->> (shuffle brokers)
-                                                      (map (fn [[host port]] (InetSocketAddress. host port)))
-                                                      EquivalentAddressGroup.
-                                                      list)]
-                                      (send a
-                                            #(.onAddresses % result Attributes/EMPTY))))]
+      (let [a (agent nil)]
         (proxy [NameResolver] []
           (getServiceAuthority [] (.getAuthority target-uri))
-          (start [new-listener] (send a (constantly new-listener)) (refresh-addresses))
+          (start [new-listener]
+            (send a (constantly new-listener))
+            (refresh-addresses a brokers))
+
           (refresh []
             (refresh-addresses))
           (shutdown [_]))))))
