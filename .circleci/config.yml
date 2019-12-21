@@ -27,7 +27,7 @@ jobs:
             echo Failed waiting for server && exit 1
       - run:
           command: |
-            lein test
+            bin/kaocha
 
   lint:
     docker:

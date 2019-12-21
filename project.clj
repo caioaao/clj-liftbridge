@@ -6,7 +6,7 @@
   :manifest {"GIT_COMMIT"   ~(System/getenv "GIT_COMMIT")
              "BUILD_NUMBER" ~(System/getenv "BUILD_NUMBER")}
   :license {:name "Apache License Version 2.0"
-            :url "http://www.apache.org/licenses/LICENSE-2.0.txt"}
+            :url  "http://www.apache.org/licenses/LICENSE-2.0.txt"}
   :source-paths ["src/main/clojure"]
   :java-source-paths ["src/main/java"
                       "src/gen/java"]
@@ -16,19 +16,19 @@
                  [com.google.protobuf/protobuf-java "3.11.0"]
                  [io.grpc/grpc-protobuf "1.26.0"]
                  [io.grpc/grpc-stub "1.26.0"]]
-  :profiles {:dev {:source-paths   ["src/main/clojure" "src/dev/clojure"]
-                   :test-paths     ["src/test/clojure"]
-                   :resource-paths ["resources/dev"]
-                   :repl-options   {:init-ns user}
-                   :dependencies   [[hashp "0.1.0"]
-                                    [orchestra "2018.12.06-2"]
-                                    [org.clojure/tools.namespace "0.3.1"]
-                                    [less-awful-ssl "1.0.4"]
-                                    [io.grpc/grpc-netty "1.26.0"]
-                                    [nubank/matcher-combinators "1.2.7" ]
-                                    [nubank/state-flow "2.0.5"]]
-                   :plugins        [[lein-cljfmt "0.6.1"]]
-                   :kaocha         {:dependencies [[lambdaisland/kaocha "0.0-565"]]}}}
+  :profiles {:dev    {:source-paths   ["src/main/clojure" "src/dev/clojure"]
+                      :test-paths     ["src/test/clojure"]
+                      :resource-paths ["resources/dev"]
+                      :repl-options   {:init-ns user}
+                      :dependencies   [[hashp "0.1.0"]
+                                       [orchestra "2018.12.06-2"]
+                                       [org.clojure/tools.namespace "0.3.1"]
+                                       [less-awful-ssl "1.0.4"]
+                                       [io.grpc/grpc-netty "1.26.0"]
+                                       [nubank/matcher-combinators "1.2.7" ]
+                                       [nubank/state-flow "2.0.5"]]
+                      :plugins        [[lein-cljfmt "0.6.1"]]}
+             :kaocha {:dependencies [[lambdaisland/kaocha "0.0-565"]]}}
   :release-tasks [["deploy" "clojars"]
                   ["change" "version"
                    "leiningen.release/bump-version" "patch"]

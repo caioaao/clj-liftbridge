@@ -46,7 +46,7 @@
 (defflow publish-and-subscirbe
   {:init    init!
    :cleanup cleanup!}
-  [lift-conn (state/gets (comp lift-connect :grpc-channel))
+  [lift-conn (state/gets (comp clj-liftbridge.client/connect :grpc-channel))
    stream-name (state/wrap-fn (fn [] (random-stream-name)))]
   (state/wrap-fn #(deref (clj-liftbridge.client/create-stream lift-conn stream-name {})))
 
@@ -75,7 +75,7 @@
 (defflow subscription-options
   {:init    init!
    :cleanup cleanup!}
-  [lift-conn (state/gets (comp lift-connect :grpc-channel))
+  [lift-conn (state/gets (comp clj-liftbridge.client/connect :grpc-channel))
    stream-name (state/wrap-fn (fn [] (random-stream-name)))]
   (state/wrap-fn #(deref (clj-liftbridge.client/create-stream lift-conn stream-name {})))
 
