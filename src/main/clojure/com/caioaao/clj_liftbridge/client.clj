@@ -1,4 +1,4 @@
-(ns liftbridge.client
+(ns com.caioaao.clj-liftbridge.client
   (:import [liftbridge.proto APIGrpc Api$CreateStreamRequest
             Api$SubscribeRequest Api$SubscribeRequest$Builder
             Api$StartPosition Api$Message APIGrpc$APIStub
@@ -8,7 +8,7 @@
            [com.google.protobuf ByteString])
   (:require [clojure.java.io :as io]
             [clojure.core.async :as async]
-            [liftbridge.message]))
+            [com.caioaao.clj-liftbridge.message :as message]))
 
 (defprotocol IClient
   (create-stream
@@ -110,14 +110,11 @@
 (defn- chan->observer ^StreamObserver [chan m]
   (reify StreamObserver
     (onNext [_ v]
-      #p "chego?"
       (async/>!! chan (m v)))
     (onError [_ ex]
-      #p "erro?"
       (async/>!! chan ex)
       (async/close! chan))
     (onCompleted [_]
-      #p "completo?"
       #_(async/close! chan))))
 
 (defn- <?? [c]
@@ -140,7 +137,7 @@
           chan     (async/chan)]
       (->> (chan->observer chan identity)
            (.createStream async-stub req-obj))
-      (future (<?? chan))))
+      (future (when (<?? chan) nil))))
 
   (subscribe [this stream-name {:keys [partition-number start-at
                                        start-offset start-time
@@ -152,7 +149,7 @@
                         :default         (-> (.setStream stream-name)
                                              .build))
           chan        (or async-chan (async/chan))]
-      (->> (chan->observer chan liftbridge.message/from-object)
+      (->> (chan->observer chan message/from-object)
            (.subscribe async-stub request-obj))
       chan))
 
@@ -169,6 +166,6 @@
       (future (<?? chan)))))
 
 (defn connect
-  "Attempts to connect to a Liftbridge server with multiple options"
+  "Attempts to connect to a Liftbridge server using the provided gRPC channel"
   [grpc-channel]
   (->Client grpc-channel (APIGrpc/newStub grpc-channel)))

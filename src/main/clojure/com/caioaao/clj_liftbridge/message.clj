@@ -1,4 +1,4 @@
-(ns liftbridge.message
+(ns com.caioaao.clj-liftbridge.message
   (:import [liftbridge.proto Api$Message Api$AckPolicy]
            [java.util Date])
   (:require [clojure.instant :as instant]))
