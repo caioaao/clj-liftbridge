@@ -137,7 +137,7 @@
           chan     (async/chan)]
       (->> (chan->observer chan identity)
            (.createStream async-stub req-obj))
-      (future (when (<?? chan) nil))))
+      (future (when (<?? chan) true))))
 
   (subscribe [this stream-name {:keys [partition-number start-at
                                        start-offset start-time
@@ -163,7 +163,7 @@
           chan (async/chan)]
       (->> (chan->observer chan identity)
            (.publish async-stub request-object))
-      (future (<?? chan)))))
+      (future (when (<?? chan) true)))))
 
 (defn connect
   "Attempts to connect to a Liftbridge server using the provided gRPC channel"
