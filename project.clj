@@ -1,4 +1,4 @@
-(defproject com.caioaao/clj-liftbridge "0.1.0-SNAPSHOT"
+(defproject com.caioaao/clj-liftbridge "0.1.0-alpha0"
   :description "liftbridge client library"
   :url "https://github.com/caioaao/clj-liftbridge"
   :scm "https://github.com/caioaao/clj-liftbridge"
