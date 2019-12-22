@@ -80,8 +80,8 @@
   (state/wrap-fn #(deref (clj-liftbridge.client/create-stream lift-conn stream-name {})))
 
   (state/wrap-fn (fn [] (->> (range 10)
-                            (map #(.getBytes (str %)))
-                            (run! (partial clj-liftbridge.client/publish lift-conn stream-name)))))
+                             (map #(.getBytes (str %)))
+                             (run! (partial clj-liftbridge.client/publish lift-conn stream-name)))))
 
   [subscription-chan (state/wrap-fn #(-> {:start-at :liftbridge.start-at/earliest-received}
                                          (->> (clj-liftbridge.client/subscribe lift-conn stream-name))
