@@ -51,6 +51,9 @@ jobs:
     docker:
       - image: circleci/clojure:lein-2.8.1
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "c5:32:ac:12:6e:79:13:00:b5:50:43:46:6b:27:e1:59"
       - checkout
       - restore_cache:
           key: deps-{{ checksum "project.clj" }}
