@@ -1,4 +1,4 @@
-(defproject com.caioaao/clj-liftbridge "0.1.0-alpha1"
+(defproject com.caioaao/clj-liftbridge "0.1.0-alpha2-SNAPSHOT"
   :description "liftbridge client library"
   :url "https://github.com/caioaao/clj-liftbridge"
   :scm "https://github.com/caioaao/clj-liftbridge"
@@ -30,10 +30,10 @@
                       :plugins        [[lein-cljfmt "0.6.1"]]}
              :kaocha {:dependencies [[lambdaisland/kaocha "0.0-565"]]}}
   :release-tasks [["deploy" "clojars"]
-                  ["change" "version"
-                   "leiningen.release/bump-version" "patch"]
-                  ["vcs" "commit"]
-                  ["vcs" "push"]]
+                  #_["change" "version"
+                   "leiningen.release/bump-version" "alpha"]
+                  #_["vcs" "commit"]
+                  #_["vcs" "push"]]
   :deploy-repositories [["clojars" {:url           "https://clojars.org/repo"
                                     :sign-releases false
                                     :username      :env/clojars_username

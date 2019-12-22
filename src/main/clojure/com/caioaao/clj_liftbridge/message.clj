@@ -3,12 +3,12 @@
            [java.util Date])
   (:require [clojure.instant :as instant]))
 
-(defn assoc-when-not-empty [coll k v]
+(defn- assoc-when-not-empty [coll k v]
   (if (empty? v)
     coll
     (assoc coll k v)))
 
-(defn ack-policy-from-obj [^Api$AckPolicy obj]
+(defn- ack-policy-from-obj [^Api$AckPolicy obj]
   (condp = obj
     Api$AckPolicy/LEADER :liftbridge.ack-policy/leader
     Api$AckPolicy/ALL    :liftbridge.ack-policy/all
