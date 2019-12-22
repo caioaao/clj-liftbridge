@@ -45,7 +45,7 @@ Liftbridge provides the following high-level features:
 (.shutdown grpc-channel)
 ```
 
-For more information, see the [API docs](https://cljdoc.org/badge/com.caioaao/clj-liftbridge/CURRENT).
+For more information, see the [API docs](https://cljdoc.org/d/com.caioaao/clj-liftbridge/CURRENT).
 
 ## TODO list
 
